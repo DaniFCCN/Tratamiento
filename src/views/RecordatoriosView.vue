@@ -59,7 +59,7 @@
 
     <div class="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
       <p class="text-xs text-slate-600">
-        <strong class="text-slate-700">Importante:</strong> Los recordatorios solo se envían mientras esta pestaña está abierta (o la app en primer plano). Si cierras Safari o la pestaña, no llegarán notificaciones hasta que vuelvas a abrir la app. Para recibir avisos con la app cerrada haría falta un servidor con notificaciones push (Web Push) o una app nativa.
+        <strong class="text-slate-700">Importante:</strong> Los recordatorios solo se envían mientras esta pestaña está abierta (o la app en primer plano). Si cierras Safari o la pestaña, no llegarán notificaciones hasta que vuelvas a abrir la app..
       </p>
     </div>
   </div>
