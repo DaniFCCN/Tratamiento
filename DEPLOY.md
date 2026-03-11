@@ -20,11 +20,11 @@ git init
 git add .
 git commit -m "Initial commit: Diario de Salud"
 git branch -M main
-git remote add origin https://github.com/TU_USUARIO/diario-salud.git
+git remote set-url origin https://github.com/DaniFCCN/Tratamiento.git
 git push -u origin main
 ```
 
-Sustituye `TU_USUARIO` por tu usuario de GitHub y `diario-salud` por el nombre del repo si lo cambiaste.
+(Si aún no tienes `origin`: `git remote add origin https://github.com/DaniFCCN/Tratamiento.git` en lugar de `set-url`.)
 
 ---
 
@@ -39,22 +39,15 @@ Con eso, cada vez que hagas **push a la rama `main`**, se ejecutará el workflow
 
 ---
 
-## 3. Ajustar la URL si el repo tiene otro nombre
+## 3. Base URL (ya configurado para Tratamiento)
 
-Si el repositorio **no** se llama `diario-salud`, edita `vite.config.js` y cambia la línea `base`:
-
-```js
-base: process.env.NODE_ENV === 'production' ? '/NOMBRE-DE-TU-REPO/' : '/',
-```
-
-Por ejemplo, si el repo es `mi-diario`, pon `'/mi-diario/'`.
+El proyecto está configurado para el repo **Tratamiento**. En `vite.config.js` la base es `'/Tratamiento/'`. Si cambias de nombre al repo, actualiza esa línea.
 
 ---
 
 ## 4. Ver tu sitio y abrirlo en Safari
 
-- La URL será: **`https://TU_USUARIO.github.io/diario-salud/`**  
-  (o `https://TU_USUARIO.github.io/NOMBRE-DE-TU-REPO/` si cambiaste el nombre).
+- La URL será: **`https://DaniFCCN.github.io/Tratamiento/`**
 
 - La primera vez puede tardar 1–2 minutos después del push.
 
@@ -73,4 +66,4 @@ Por ejemplo, si el repo es `mi-diario`, pon `'/mi-diario/'`.
 | 2 | `git init`, `git add .`, `git commit`, `git remote add origin ...`, `git push -u origin main` |
 | 3 | Settings → Pages → Source: **GitHub Actions** |
 | 4 | Si el repo no se llama `diario-salud`, cambiar `base` en `vite.config.js` |
-| 5 | Abrir `https://TU_USUARIO.github.io/diario-salud/` en Safari y, si quieres, "Añadir a pantalla de inicio" |
+| 5 | Abrir `https://DaniFCCN.github.io/Tratamiento/` en Safari y, si quieres, "Añadir a pantalla de inicio" |

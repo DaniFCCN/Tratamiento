@@ -6,5 +6,5 @@ import vue from '@vitejs/plugin-vue'
 // Para desarrollo local usa '/' (por defecto)
 export default defineConfig({
   plugins: [vue()],
-  base: process.env.NODE_ENV === 'production' ? '/diario-salud/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/Tratamiento/' : '/',
 })
