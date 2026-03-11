@@ -3,7 +3,7 @@
     <!-- Contenedor único: mismo ancho para header, menú y contenido (iPhone) -->
     <div class="flex-1 flex flex-col w-full max-w-xl mx-auto px-4">
       <header class="bg-accent-500 shrink-0 w-full my-5 pt-safe pt-8 pb-8 px-6 rounded-xl shadow-sm text-center">
-        <h1 class="text-2xl font-bold text-white tracking-tight">Diario tratamiento Lar</h1>
+        <h1 class="text-2xl font-bold text-white tracking-tight mt-[13px]">Diario tratamiento Lar</h1>
         <p class="text-sm text-white/90 mt-2 max-w-sm mx-auto">Síntomas, medicación y comentarios por día</p>
       </header>
 

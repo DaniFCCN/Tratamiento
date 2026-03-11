@@ -1,69 +1,115 @@
-# Publicar en GitHub Pages (y abrirlo en Safari)
+# Hosting en GitHub Pages
 
-## 1. Subir el proyecto a GitHub
+Pasos para alojar la app en GitHub y que se sirva en la URL que genera Pages. Después podrás proteger el acceso para usuarios concretos.
 
-### Crear el repositorio en GitHub
+---
+
+## Paso 1: Repositorio en GitHub
+
 1. Entra en [github.com](https://github.com) e inicia sesión.
-2. Clic en **+** (arriba derecha) → **New repository**.
-3. **Repository name**: por ejemplo `diario-salud` (o el que quieras).
-4. Elige **Public**.
-5. No marques "Add a README" (ya tienes código local).
-6. Clic en **Create repository**.
+2. **+** (arriba derecha) → **New repository**.
+3. **Repository name**: el que quieras (ej. `Tratamiento`). **Public**.
+4. No marques "Add a README" ni .gitignore.
+5. **Create repository**.
 
-### Subir el código desde tu PC
-Abre una terminal en la carpeta del proyecto (`diario-salud`) y ejecuta:
+---
+
+## Paso 2: Subir el código
+
+En la carpeta del proyecto:
 
 ```bash
 cd c:\Cursor\diario-salud
 
 git init
 git add .
-git commit -m "Initial commit: Diario de Salud"
+git commit -m "Initial commit"
 git branch -M main
-git remote set-url origin https://github.com/DaniFCCN/Tratamiento.git
+git remote add origin https://github.com/TU_USUARIO/NOMBRE_REPO.git
 git push -u origin main
 ```
 
-(Si aún no tienes `origin`: `git remote add origin https://github.com/DaniFCCN/Tratamiento.git` en lugar de `set-url`.)
+Sustituye `TU_USUARIO` y `NOMBRE_REPO` por tu usuario y el nombre del repo (ej. `DaniFCCN` y `Tratamiento`).
+
+Si ya tenías `origin`:
+
+```bash
+git remote set-url origin https://github.com/TU_USUARIO/NOMBRE_REPO.git
+git push -u origin main
+```
 
 ---
 
-## 2. Activar GitHub Pages
+## Paso 3: Activar GitHub Pages
 
-1. En tu repositorio de GitHub, ve a **Settings** (Configuración).
-2. En el menú izquierdo, entra en **Pages** (dentro de "Code and automation").
-3. En **Build and deployment** → **Source**, elige **GitHub Actions** (no "Deploy from a branch").
-4. Guarda si hace falta.
+1. En el repo → **Settings**.
+2. Menú izquierdo → **Pages**.
+3. **Build and deployment** → **Source**: elige **GitHub Actions**.
+4. No hace falta guardar nada más.
 
-Con eso, cada vez que hagas **push a la rama `main`**, se ejecutará el workflow y se publicará la web automáticamente.
-
----
-
-## 3. Base URL (ya configurado para Tratamiento)
-
-El proyecto está configurado para el repo **Tratamiento**. En `vite.config.js` la base es `'/Tratamiento/'`. Si cambias de nombre al repo, actualiza esa línea.
+Con esto, cada **push a `main`** dispara el workflow y publica la app en Pages.
 
 ---
 
-## 4. Ver tu sitio y abrirlo en Safari
+## Paso 4: Base URL del proyecto
 
-- La URL será: **`https://DaniFCCN.github.io/Tratamiento/`**
+La app debe conocer el nombre del repo para que rutas y recursos carguen bien. En **`vite.config.js`** la línea `base` debe usar ese nombre:
 
-- La primera vez puede tardar 1–2 minutos después del push.
+```js
+base: process.env.NODE_ENV === 'production' ? '/NOMBRE_REPO/' : '/',
+```
 
-- **En iPhone (Safari):**
-  1. Abre esa URL en Safari.
-  2. Para tenerlo como app: **Compartir** (cuadrado con flecha) → **Añadir a pantalla de inicio**.
-  3. Los datos se guardan en el dispositivo (localStorage).
+Ejemplo: si el repo es `Tratamiento`, debe ser `'/Tratamiento/'`. Si cambias el nombre del repo, cambia esta línea y haz push.
 
 ---
 
-## Resumen rápido
+## Paso 5: URL de la app
 
-| Paso | Acción |
-|------|--------|
-| 1 | Crear repo en GitHub (sin README) |
-| 2 | `git init`, `git add .`, `git commit`, `git remote add origin ...`, `git push -u origin main` |
-| 3 | Settings → Pages → Source: **GitHub Actions** |
-| 4 | Si el repo no se llama `diario-salud`, cambiar `base` en `vite.config.js` |
-| 5 | Abrir `https://DaniFCCN.github.io/Tratamiento/` en Safari y, si quieres, "Añadir a pantalla de inicio" |
+Cuando el workflow termine (1–2 min tras el primer push), la app estará en:
+
+**`https://TU_USUARIO.github.io/NOMBRE_REPO/`**
+
+Ejemplo: `https://DaniFCCN.github.io/Tratamiento/`
+
+Esa es la URL que usarás para acceder a la app. Más adelante podrás restringir el acceso a usuarios concretos.
+
+---
+
+## Resumen
+
+| # | Qué hacer |
+|---|-----------|
+| 1 | Crear repo en GitHub (Public, sin README). |
+| 2 | `git init` → `git add .` → `git commit` → `git remote add origin ...` → `git push -u origin main`. |
+| 3 | Settings → Pages → Source: **GitHub Actions**. |
+| 4 | En `vite.config.js`, `base: '/NOMBRE_REPO/'` (mismo nombre que el repo). |
+| 5 | Abrir `https://TU_USUARIO.github.io/NOMBRE_REPO/` cuando el workflow termine. |
+
+Actualizaciones: cualquier cambio que subas a `main` se desplegará solo al hacer **push**.
+
+---
+
+## Si “la página ya estaba ocupada” (usar esta app en la URL principal)
+
+En GitHub solo puede haber **un sitio en la raíz**: `https://TU_USUARIO.github.io/`. Ese sitio **solo** puede publicarse desde un repositorio que se llame exactamente **`TU_USUARIO.github.io`** (ej. `DaniFCCN.github.io`).
+
+Tienes dos opciones:
+
+### Opción A: App en la URL del repo (recomendado para empezar)
+
+- **No toques** el repo que ya usas para `usuario.github.io`.
+- En el repo **Tratamiento**: Settings → Pages → Source: **GitHub Actions**.
+- La app queda en: **`https://DaniFCCN.github.io/Tratamiento/`**
+
+Así no cambias la página principal; solo añades esta app en una ruta.
+
+### Opción B: Esta app como página principal (usuario.github.io)
+
+Para que **`https://DaniFCCN.github.io/`** sea esta app:
+
+1. Crea un repositorio nuevo que se llame exactamente **`DaniFCCN.github.io`** (vacío, sin README).
+2. En **Settings → Pages** de ese repo, Source: **GitHub Actions**.
+3. En el repo **Tratamiento**, tras hacer `npm run build`, copia **todo el contenido** de la carpeta `dist/` al repo `DaniFCCN.github.io` (por ejemplo subiendo los ficheros o haciendo push desde tu PC).  
+   Importante: en ese repo la app se sirve en la **raíz**, así que en `vite.config.js` para ese despliegue la `base` debería ser `'/'`. Puedes tener un build “para Pages raíz” solo para ese repo (por ejemplo con `base: '/'` y subiendo ese `dist` a `DaniFCCN.github.io`).
+
+Si quieres, en un siguiente paso se puede automatizar: que el workflow de Tratamiento haga build y suba el `dist` al repo `DaniFCCN.github.io` usando un token, para no copiar a mano.

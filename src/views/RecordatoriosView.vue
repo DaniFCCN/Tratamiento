@@ -59,7 +59,7 @@
 
     <div class="rounded-xl border border-slate-200 bg-slate-50/50 p-4">
       <p class="text-xs text-slate-600">
-        <strong class="text-slate-700">En el móvil:</strong> Abre esta página en Safari y, si quieres que los avisos lleguen aunque no tengas la pestaña abierta, añade la web a la pantalla de inicio (Compartir → Añadir a pantalla de inicio). En algunos dispositivos las notificaciones solo se muestran cuando la app está abierta o en primer plano.
+        <strong class="text-slate-700">Importante:</strong> Los recordatorios solo se envían mientras esta pestaña está abierta (o la app en primer plano). Si cierras Safari o la pestaña, no llegarán notificaciones hasta que vuelvas a abrir la app. Para recibir avisos con la app cerrada haría falta un servidor con notificaciones push (Web Push) o una app nativa.
       </p>
     </div>
   </div>
